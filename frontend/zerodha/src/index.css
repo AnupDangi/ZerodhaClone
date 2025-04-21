@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +65,31 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+/* 
+.nav-link{
+  margin-left:40px;
+} */
+
+
+.navbar-toggler{
+  margin-left: 50px;
 }
+
+
+#navbarSupportedContent{
+  font-size: larger;
+  margin-left: 400px;
+  text-align: center;
+}
+
+
+
+.uniform-img {
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+
