@@ -8,8 +8,33 @@
     ],
     "routes": [
       {
+        "src": "/auth/signup",
+        "headers": {
+          "Access-Control-Allow-Origin": [
+            "https://zerodha-clone-ykwn.vercel.app",
+            "https://dashboard-lemon-phi-34.vercel.app"
+          ],
+          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        },
+        "methods": ["GET", "POST", "OPTIONS"]
+      },
+      {
+        "src": "/auth/.*",
+        "headers": {
+          "Access-Control-Allow-Origin": [
+            "https://zerodha-clone-ykwn.vercel.app",
+            "https://dashboard-lemon-phi-34.vercel.app"
+          ],
+          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        },
+        "methods": ["GET", "POST", "OPTIONS"]
+      },
+      {
         "src": "/(.*)",
-        "dest": "server.js"
+        "dest": "/server.js"
       }
     ]
   }
+  
