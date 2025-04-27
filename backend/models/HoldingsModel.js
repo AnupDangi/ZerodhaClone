@@ -9,5 +9,6 @@ const HoldingSchema = new Schema({
   net: String,
   day: String,
 });
+
 const HoldingsModel = model("Holding", HoldingSchema);  // Correct model registration
 module.exports = { HoldingsModel };
