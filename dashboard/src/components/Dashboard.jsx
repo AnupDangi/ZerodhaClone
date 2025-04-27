@@ -10,7 +10,7 @@ import Positions from "./Positions";
 import Summary from "./Summary";
 import WatchList from "./WatchList";
 import { GeneralContextProvider } from "./GeneralContext";
-import NotFound from "../../../zerodha/src/components/NotFound";
+import NotFound from "./NotFound";
 
 const Dashboard = ({username}) => {
   return (
@@ -29,7 +29,7 @@ const Dashboard = ({username}) => {
           <Route path="/*" element={<NotFound/>}/>
         </Routes>
       </div>
-    </div>
+    </div>  
   );
 };
 
