@@ -37,7 +37,7 @@ const Signup = () => {
     try {
       const { data } = await axios.post(
         // "http://localhost:5002/auth/signup",
-        "https://zerodha-clone-blond-gamma.vercel.app/auth/signup",
+        "https://zerodhabackend-w2jv.onrender.com/auth/signup",
         inputValue,
         { withCredentials: true }
       );
