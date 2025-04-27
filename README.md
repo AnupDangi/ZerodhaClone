@@ -158,8 +158,5 @@ See the [LICENSE](LICENSE) file for more information.
 ---
 
 # 🚀 Happy Trading!
-
 ---
-
-If you'd like, I can also help you create a small **badge section** (like "Built with MERN", "License: MIT", "Open Source") or an even more advanced version with shields.io badges at the top.  
-Would you like me to add that too?
+Feel Free to clone and make changes based on your requirements.
