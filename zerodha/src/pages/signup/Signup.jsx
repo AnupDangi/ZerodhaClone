@@ -32,32 +32,33 @@ const Signup = () => {
     toast.success(msg, {
       position: "bottom-right",
     });
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const { data } = await axios.post(
-      "http://localhost:5002/auth/signup",
-      inputValue,
-      { withCredentials: true }
-    );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(
+        // "http://localhost:5002/auth/signup",
+        "https://zerodha-clone-blond-gamma.vercel.app/auth/signup",
+        inputValue,
+        { withCredentials: true }
+      );
 
-    console.log("Signup Response:", data);
+      console.log("Signup Response:", data);
 
-    if (data.success) {
-      handleSuccess(data.message);
-      setTimeout(() => {
-        navigate("/login");
-      }, 1000);
-    } else {
-      handleError(data.message);
+      if (data.success) {
+        handleSuccess(data.message);
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else {
+        handleError(data.message);
+      }
+    } catch (error) {
+      console.error("Signup Axios Error:", error);
+      handleError("Something went wrong");
     }
-  } catch (error) {
-    console.error("Signup Axios Error:", error);
-    handleError("Something went wrong");
-  }
 
-  setInputValue({ email: "", password: "", username: "" });
-};
+    setInputValue({ email: "", password: "", username: "" });
+  };
 
   return (
     <div className="container mt-5">
@@ -67,7 +68,9 @@ const handleSubmit = async (e) => {
             <h3 className="text-center mb-4">Create an Account</h3>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email address</label>
+                <label htmlFor="email" className="form-label">
+                  Email address
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -80,7 +83,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">Username</label>
+                <label htmlFor="username" className="form-label">
+                  Username
+                </label>
                 <input
                   type="text"
                   name="username"
@@ -93,7 +98,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="password" className="form-label">Password</label>
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
                 <input
                   type="password"
                   name="password"
@@ -104,7 +111,9 @@ const handleSubmit = async (e) => {
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-primary w-100">Sign Up</button>
+              <button type="submit" className="btn btn-primary w-100">
+                Sign Up
+              </button>
               <p className="text-center mt-3">
                 Already have an account? <Link to="/login">Login</Link>
               </p>

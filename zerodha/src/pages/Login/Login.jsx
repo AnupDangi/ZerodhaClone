@@ -29,7 +29,8 @@ const Login = () => {
       console.log("Attempting login with:", inputValue.email);
       
       const response = await axios.post(
-        "http://localhost:5002/auth/login",
+        // "http://localhost:5002/auth/login",
+        "https://zerodha-clone-blond-gamma.vercel.app/auth/login",
         inputValue,
         { withCredentials: true }
       );
@@ -60,7 +61,8 @@ const Login = () => {
         // Redirect to dashboard application
         setTimeout(() => {
           console.log("Redirecting to dashboard...");
-          window.location.href = "http://localhost:5174/";
+          // window.location.href = "http://localhost:5174/";
+          window.location.href = "https://dashboard-lemon-phi-34.vercel.app/";
         }, 1000);
       } else {
         handleError(message || "Login failed");

@@ -13,7 +13,9 @@ const Menu = ({ username }) => {
     try {
       // 1) Tell backend to clear the cookie
       await axios.post(
-        "http://localhost:5002/auth/logout",
+        // "http://localhost:5002/auth/logout",
+        "https://zerodha-clone-blond-gamma.vercel.app/auth/logout",
+
         {},
         { withCredentials: true }
       );
@@ -22,7 +24,9 @@ const Menu = ({ username }) => {
       console.error("Logout error:", err);
     } finally {
       // 2) Redirect back to login app
-      window.location.href = "http://localhost:5173/login";
+      window.location.href = 
+      // "http://localhost:5173/login"
+      "https://zerodha-clone-ykwn.vercel.app/login";
     }
   };
 

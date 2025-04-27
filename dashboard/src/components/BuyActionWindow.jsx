@@ -12,7 +12,8 @@ const BuyActionWindow = ({ uid }) => {
   const [stockPrice, setStockPrice] = useState(0.0);
 
   const handleBuyClick = () => {
-    axios.post("http://localhost:5002/newOrder", {
+    // axios.post("http://localhost:5002/newOrder", {
+      axios.post("https://zerodha-clone-blond-gamma.vercel.app/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: parseInt(stockPrice),

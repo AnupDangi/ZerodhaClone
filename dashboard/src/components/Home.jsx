@@ -10,7 +10,8 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5002/auth/userVerification", { 
+      // .get("http://localhost:5002/auth/userVerification", { 
+        .get("https://zerodha-clone-blond-gamma.vercel.app/auth/userVerification", { 
         withCredentials: true 
       })
       .then(res => {
@@ -20,10 +21,13 @@ export default function Home() {
           localStorage.setItem("userId", res.data.user.id);
           localStorage.setItem("username", res.data.user.username);
         } else {
-          window.location.href = "http://localhost:5173/login";
+          // window.location.href = "http://localhost:5173/login";
+          window.location.href = "https://zerodha-clone-ykwn.vercel.app/login";
         }
       })
-      .catch(() => window.location.href = "http://localhost:5173/login")
+      // .catch(() => window.location.href = "http://localhost:5173/login")
+      .catch(() => window.location.href = "https://zerodha-clone-ykwn.vercel.app/login")
+
       .finally(() => setLoading(false));
   }, []);
 

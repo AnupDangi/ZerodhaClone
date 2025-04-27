@@ -9,7 +9,8 @@ const Holdings = () => {
 
 
   useEffect(()=>{
-    axios.get("http://localhost:5002/allHoldings").then((res)=>{
+    // axios.get("http://localhost:5002/allHoldings").then((res)=>{
+      axios.get("https://zerodha-clone-blond-gamma.vercel.app/allHoldings").then((res)=>{
       console.log(res.data);
       setAllHoldings(res.data);
     });
