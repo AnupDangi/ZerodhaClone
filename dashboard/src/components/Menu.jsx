@@ -14,7 +14,7 @@ const Menu = ({ username }) => {
       // 1) Tell backend to clear the cookie
       await axios.post(
         // "http://localhost:5002/auth/logout",
-        "https://zerodha-clone-blond-gamma.vercel.app/auth/logout",
+        "https://zerodhabackend-w2jv.onrender.com/auth/logout",
 
         {},
         { withCredentials: true }
