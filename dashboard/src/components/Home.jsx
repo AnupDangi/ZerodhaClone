@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     axios
       // .get("http://localhost:5002/auth/userVerification", { 
-        .get("https://zerodha-clone-blond-gamma.vercel.app/auth/userVerification", { 
+        .get("https://zerodhabackend-w2jv.onrender.com/auth/userVerification", { 
         withCredentials: true 
       })
       .then(res => {
