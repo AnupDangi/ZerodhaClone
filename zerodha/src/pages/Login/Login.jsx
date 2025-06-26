@@ -18,63 +18,52 @@ const Login = () => {
 
   const handleError = (err) => toast.error(err, { position: "bottom-left" });
   const handleSuccess = (msg) => toast.success(msg, { position: "bottom-right" });
+  
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (isSubmitting) return;
-    setIsSubmitting(true);
-    
-    try {
-      console.log("Attempting login with:", inputValue.email);
-      
-      const response = await axios.post(
-        // "http://localhost:5002/auth/login",
-        "https://zerodhabackend-w2jv.onrender.com/auth/login",
-        inputValue,
-        { withCredentials: true }
-      );
-      
-      console.log("Login API response:", response.data);
-      
-      const { success, message, token, user } = response.data;
-      
-      if (success && user) {
-        handleSuccess(message);
-        
-        // Clear any existing auth data
-        localStorage.removeItem("token");
-        localStorage.removeItem("userId");
-        localStorage.removeItem("username");
-        
-        // Store fresh authentication data
-        localStorage.setItem("token", token);
-        localStorage.setItem("userId", user.id);
-        localStorage.setItem("username", user.username);
-        
-        console.log("Stored authentication data:", {
-          token: token ? "Present" : "Missing",
-          userId: user.id,
-          username: user.username
-        });
-        
-        // Redirect to dashboard application
-        setTimeout(() => {
-          console.log("Redirecting to dashboard...");
-          // window.location.href = "http://localhost:5174/";
-          window.location.href = "https://dashboard-lemon-phi-34.vercel.app/";
-        }, 1000);
-      } else {
-        handleError(message || "Login failed");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      handleError(error.response?.data?.message || "Login failed");
-    } finally {
-      setIsSubmitting(false);
-      setInputValue({ email: "", password: "" });
-    }
+  if (isSubmitting) return;
+  setIsSubmitting(true);
+
+  // Trim before sending
+  const cleanedInput = {
+    email: inputValue.email.trim(),
+    password: inputValue.password.trim()
   };
+
+  try {
+    console.log("Attempting login with:", cleanedInput.email);
+
+    const response = await axios.post(
+      "https://zerodhabackend-w2jv.onrender.com/auth/login",
+      cleanedInput,
+      { withCredentials: true }
+    );
+
+    const { success, message, token, user } = response.data;
+
+    if (success && user) {
+      handleSuccess(message);
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("userId", user.id);
+      localStorage.setItem("username", user.username);
+
+      setTimeout(() => {
+        window.location.href = "https://dashboard-lemon-phi-34.vercel.app/";
+      }, 1000);
+    } else {
+      handleError(message || "Login failed");
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    handleError(error.response?.data?.message || "Login failed");
+  } finally {
+    setIsSubmitting(false);
+    setInputValue({ email: "", password: "" });
+  }
+};
+
 
   return (
     <div className="container mt-5">
