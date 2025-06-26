@@ -18,37 +18,47 @@ const Login = () => {
 
   const handleError = (err) => toast.error(err, { position: "bottom-left" });
   const handleSuccess = (msg) => toast.success(msg, { position: "bottom-right" });
-  
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
   e.preventDefault();
-
   if (isSubmitting) return;
   setIsSubmitting(true);
-
+  
   // Trim before sending
   const cleanedInput = {
     email: inputValue.email.trim(),
     password: inputValue.password.trim()
   };
-
+  
   try {
-    console.log("Attempting login with:", cleanedInput.email);
-
+    console.log("=== LOGIN DEBUG ===");
+    console.log("Raw input values:", {
+      email: inputValue.email,
+      password: inputValue.password,
+      emailLength: inputValue.email.length,
+      passwordLength: inputValue.password.length
+    });
+    
+    console.log("Cleaned input values:", {
+      email: cleanedInput.email,
+      password: cleanedInput.password,
+      emailLength: cleanedInput.email.length,
+      passwordLength: cleanedInput.password.length
+    });
+    
+    console.log("Attempting login with email:", cleanedInput.email);
+    
     const response = await axios.post(
       "https://zerodhabackend-w2jv.onrender.com/auth/login",
       cleanedInput,
       { withCredentials: true }
     );
-
+    
     const { success, message, token, user } = response.data;
-
     if (success && user) {
       handleSuccess(message);
-
       localStorage.setItem("token", token);
       localStorage.setItem("userId", user.id);
       localStorage.setItem("username", user.username);
-
       setTimeout(() => {
         window.location.href = "https://dashboard-lemon-phi-34.vercel.app/";
       }, 1000);
@@ -56,7 +66,9 @@ const handleSubmit = async (e) => {
       handleError(message || "Login failed");
     }
   } catch (error) {
-    console.error("Login error:", error);
+    console.error("=== LOGIN ERROR ===");
+    console.error("Full error:", error);
+    console.error("Response data:", error.response?.data);
     handleError(error.response?.data?.message || "Login failed");
   } finally {
     setIsSubmitting(false);
