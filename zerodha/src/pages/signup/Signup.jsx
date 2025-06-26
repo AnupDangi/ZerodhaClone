@@ -32,13 +32,26 @@ const Signup = () => {
     toast.success(msg, {
       position: "bottom-right",
     });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // IMPORTANT: Trim values before sending to match backend behavior
+      const trimmedData = {
+        email: inputValue.email.trim(),
+        password: inputValue.password.trim(),
+        username: inputValue.username.trim(),
+      };
+
+      console.log("Sending signup data:", { 
+        email: trimmedData.email, 
+        username: trimmedData.username,
+        password: "***" 
+      });
+
       const { data } = await axios.post(
-        // "http://localhost:5002/auth/signup",
         "https://zerodhabackend-w2jv.onrender.com/auth/signup",
-        inputValue,
+        trimmedData, // Send trimmed data instead of inputValue
         { withCredentials: true }
       );
 
@@ -54,7 +67,7 @@ const Signup = () => {
       }
     } catch (error) {
       console.error("Signup Axios Error:", error);
-      handleError("Something went wrong");
+      handleError(error.response?.data?.message || "Something went wrong");
     }
 
     setInputValue({ email: "", password: "", username: "" });
